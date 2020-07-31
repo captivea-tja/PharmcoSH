@@ -18,9 +18,11 @@
         <field name="arch" type="xml">
             <xpath expr="//group/group" position="after">
                 <group>
+                    <field name="supplier_id" attrs="{'invisible': [('has_tracking', '=', 'none')]}" readonly="1"/>
+                    <field name="supplier_lot" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
+                    <field name="manufacturer_lot" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
                     <field name="tare_weight" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
                     <field name="container_type" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
-                    <field name="manufacturer_lot" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
                     <field name="expiration_date" attrs="{'invisible': [('has_tracking', '=', 'none')], 'required': [('has_tracking', '!=', 'none')]}"/>
                 </group>
             </xpath>
@@ -111,15 +113,18 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="manufacturer_lot" readonly="1"/>
+                <field name="supplier_lot" readonly="1"/>
             </xpath>
             <xpath expr="//field[@name='removal_date']" position="before">
                 <field name="manufacture_date"/>
             </xpath>
             <xpath expr="//group[@name='main_group']/group" position="after">
                 <group>
-                    <field name="tare_weight"/> 
-                    <field name="gross_weight"/> 
+                    <field name="tare_weight"/>
+                    <field name="component_weight"/>
+                    <field name="gross_weight"/>
                     <field name="container_type"/>
+                    <field name="supplier_id"/>
                 </group>
             </xpath>
         </field>
